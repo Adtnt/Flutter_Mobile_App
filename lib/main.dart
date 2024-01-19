@@ -1,7 +1,20 @@
+import 'dart:html';
+
+import 'package:flutter_project/data/core/api_clients.dart';
+import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
+import 'package:flutter_project/data/data_sources/movie_remote_data_source.dart';
 
 void main() {
+  ApiClient apiClient = ApiClient(http.Client());
+  MovieRemoteDataSource dataSource = MovieRemoteDataSourceImpl(apiClient);
+  dataSource.getTrending();
+  dataSource.getPopular();
+  dataSource.getPlayingNow();
+  dataSource.getComingSoon();
   runApp(const MyApp());
+
 }
 
 class MyApp extends StatelessWidget {
