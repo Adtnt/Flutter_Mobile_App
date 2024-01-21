@@ -1,24 +1,20 @@
 
+import 'dart:async';
+
 import 'package:dartz/dartz.dart' hide State;
-import 'package:flutter_project/data/core/api_clients.dart';
-import 'package:flutter_project/data/respositories/movie_repository_impl.dart';
 import 'package:flutter_project/domain/entities/app_error.dart';
 import 'package:flutter_project/domain/entities/movie_entity.dart';
 import 'package:flutter_project/domain/entities/no_params.dart';
-import 'package:flutter_project/domain/respositories/movie_repository.dart';
 import 'package:flutter_project/domain/usecases/get_trending.dart';
-import 'package:http/http.dart' as http;
-
+import 'di/get_it.dart' as getIt;
 import 'package:flutter/material.dart';
-import 'package:flutter_project/data/data_sources/movie_remote_data_source.dart';
 
 Future<void> main() async {
-  ApiClient apiClient = ApiClient(http.Client());
-  MovieRemoteDataSource dataSource = MovieRemoteDataSourceImpl(apiClient);
-  MovieRepository movieRespository = MovieRepositoryImpl(dataSource);
-  GetTrending getTrending = GetTrending(movieRespository);
-  final Either<AppError, List<MovieEntity>> eitherResponse =
-    await getTrending(NoParams());
+  unawaited(getIt.init());
+
+  GetTrending getTrending = getIt.getItInstance<GetTrending>();
+
+  final Either<AppError, List<MovieEntity>> eitherResponse = await getTrending(NoParams());
   eitherResponse.fold(
     (l){
       print('error');
