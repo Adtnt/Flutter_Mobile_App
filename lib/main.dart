@@ -1,18 +1,34 @@
-import 'dart:html';
 
+import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter_project/data/core/api_clients.dart';
+import 'package:flutter_project/data/respositories/movie_repository_impl.dart';
+import 'package:flutter_project/domain/entities/app_error.dart';
+import 'package:flutter_project/domain/entities/movie_entity.dart';
+import 'package:flutter_project/domain/entities/no_params.dart';
+import 'package:flutter_project/domain/respositories/movie_repository.dart';
+import 'package:flutter_project/domain/usecases/get_trending.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_project/data/data_sources/movie_remote_data_source.dart';
 
-void main() {
+Future<void> main() async {
   ApiClient apiClient = ApiClient(http.Client());
   MovieRemoteDataSource dataSource = MovieRemoteDataSourceImpl(apiClient);
-  dataSource.getTrending();
-  dataSource.getPopular();
-  dataSource.getPlayingNow();
-  dataSource.getComingSoon();
+  MovieRepository movieRespository = MovieRepositoryImpl(dataSource);
+  GetTrending getTrending = GetTrending(movieRespository);
+  final Either<AppError, List<MovieEntity>> eitherResponse =
+    await getTrending(NoParams());
+  eitherResponse.fold(
+    (l){
+      print('error');
+      print(l);
+    },
+    (r){
+      print('list of movie');
+      print(r);
+    },
+  );
   runApp(const MyApp());
 
 }
