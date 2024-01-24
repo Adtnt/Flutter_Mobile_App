@@ -5,7 +5,7 @@ class MovieModel extends MovieEntity{
   final bool? adult;
   final String? backdropPath;
   final int? id;
-  final String? title;
+  final String title;
   final String? originalLanguage;
   final String? originalTitle;
   final String? overview;
@@ -22,7 +22,7 @@ class MovieModel extends MovieEntity{
       {this.adult,
       this.backdropPath,
       this.id,
-      this.title,
+      required this.title,
       this.originalLanguage,
       this.originalTitle,
       this.overview,

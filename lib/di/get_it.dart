@@ -6,6 +6,8 @@ import 'package:flutter_project/domain/usecases/get_coming_soon.dart';
 import 'package:flutter_project/domain/usecases/get_playng_now.dart';
 import 'package:flutter_project/domain/usecases/get_popular.dart';
 import 'package:flutter_project/domain/usecases/get_trending.dart';
+import 'package:flutter_project/presentation/blocs/movie_backdrop/movie_backdrop_bloc.dart';
+import 'package:flutter_project/presentation/blocs/movie_carousel/movie_carousel_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 
@@ -29,4 +31,13 @@ Future init() async{
 
   //Movie Repository
   getItInstance.registerLazySingleton<MovieRepository>(() => MovieRepositoryImpl(getItInstance()));
+
+  getItInstance.registerFactory(
+    () => MovieCarouselBloc(
+      getTrending: getItInstance(),
+      movieBackdropBloc: getItInstance(),
+    ),
+  );
+
+  getItInstance.registerFactory(() => MovieBackdropBloc());
 }

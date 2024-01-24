@@ -1,33 +1,33 @@
-import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-import 'package:dartz/dartz.dart' hide State;
-import 'package:flutter_project/domain/entities/app_error.dart';
-import 'package:flutter_project/domain/entities/movie_entity.dart';
-import 'package:flutter_project/domain/entities/no_params.dart';
-import 'package:flutter_project/domain/usecases/get_trending.dart';
-import 'di/get_it.dart' as getIt;
-import 'package:flutter/material.dart';
-import 'presentation/movie_app.dart';
+import 'package:flutter_project/common/screenutil/screenutil.dart';
+import 'package:flutter_project/presentation/journeys/home/home_screen.dart';
+import 'package:flutter_project/presentation/themes/theme_color.dart';
+import 'package:flutter_project/presentation/themes/theme_text.dart';
 
-
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  unawaited(
-      SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]));
-  unawaited(getIt.init());
-  
-  runApp(MovieApp());
+class MovieApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // Khởi tạo màn hình
+    ScreenUtil.init();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Movie App',
+      theme: ThemeData(
+        primaryColor: AppColor.vulcan,
+        scaffoldBackgroundColor: AppColor.vulcan,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: ThemeText.getTextTheme(),
+        appBarTheme: const AppBarTheme(elevation: 0),
+      ),
+      home: HomeScreen(), 
+    );
+  }
 }
 
-/************************** 
- *  Đem qua import 'presentation/widgets/movie_app.dart'; 
-**************************/
-
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
+// class MovieApp extends StatelessWidget {
+//  const MovieApp({super.key});
 
 //   // This widget is the root of your application.
 //   @override
@@ -57,6 +57,7 @@ void main() {
 //     );
 //   }
 // }
+
 
 // class MyHomePage extends StatefulWidget {
 //   const MyHomePage({super.key, required this.title});
@@ -145,3 +146,4 @@ void main() {
 //     );
 //   }
 // }
+
