@@ -4,12 +4,12 @@ import 'package:flutter_project/domain/entities/movie_entity.dart';
 class MovieModel extends MovieEntity{
   final bool? adult;
   final String? backdropPath;
-  final int? id;
+  final int id;
   final String title;
   final String? originalLanguage;
   final String? originalTitle;
   final String? overview;
-  final String? posterPath;
+  final String posterPath;
   final String? mediaType;
   final List<int>? genreIds;
   final double? popularity;
@@ -21,12 +21,12 @@ class MovieModel extends MovieEntity{
   MovieModel(
       {this.adult,
       this.backdropPath,
-      this.id,
+      required this.id,
       required this.title,
       this.originalLanguage,
       this.originalTitle,
       this.overview,
-      this.posterPath,
+      required this.posterPath,
       this.mediaType,
       this.genreIds,
       this.popularity,

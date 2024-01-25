@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/domain/entities/movie_entity.dart';
-import 'package:flutter_project/presentation/blocs/movie_backdrop/movie_backdrop_bloc.dart';
 import 'package:flutter_project/presentation/journeys/home/movie_carousel/movie_backdrop_widget.dart';
 import 'package:flutter_project/presentation/journeys/home/movie_carousel/movie_data_widget.dart';
 import 'package:flutter_project/presentation/journeys/home/movie_carousel/movie_page_view.dart';

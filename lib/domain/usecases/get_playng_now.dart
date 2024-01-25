@@ -12,6 +12,6 @@ class GetPlayingNow extends UseCase<List<MovieEntity>, NoParams> {
 
   @override
   Future<Either<AppError, List<MovieEntity>>> call(NoParams noParams) async {
-    return await repository.getTrending();
+    return await repository.getPlayingNow();
   }
 }

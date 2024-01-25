@@ -13,6 +13,8 @@ class MovieBackdropWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(
+      alignment: Alignment.topCenter,
+      heightFactor: 0.7,
       child: ClipRRect(
         borderRadius: BorderRadius.vertical(
           bottom: Radius.circular(Sizes.dimen_40.w),
@@ -28,7 +30,7 @@ class MovieBackdropWidget extends StatelessWidget {
                     return CachedNetworkImage(
                       imageUrl:
                           '${ApiConstants.BASE_IMAGE_URL}${state.movie.backdropPath}',
-                      fit: BoxFit.fitHeight,
+                      fit: BoxFit.fitHeight ,
                     );
                   }
                   return const SizedBox.shrink();
@@ -45,7 +47,7 @@ class MovieBackdropWidget extends StatelessWidget {
             ),
           ],
         ),
-      ),
+      )
     );
   }
 }
