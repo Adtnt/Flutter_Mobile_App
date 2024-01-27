@@ -6,6 +6,7 @@ import 'package:flutter_project/presentation/blocs/movie_carousel/movie_carousel
 import 'package:flutter_project/presentation/blocs/movie_tabbed/movie_tabbed_bloc.dart';
 import 'package:flutter_project/presentation/journeys/home/movie_carousel/movie_carousel_widget.dart';
 import 'package:flutter_project/presentation/journeys/home/movie_tabbed/movie_tabbed_widget.dart';
+import 'package:flutter_project/presentation/journeys/drawer/navigation_drawer.dart'as prefix;
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -49,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
         )
       ],
       child: Scaffold(
+          drawer: const prefix.NavigationDrawer(),
           body: BlocBuilder<MovieCarouselBloc, MovieCarouselState>(
         bloc: movieCarouseBloc,
         builder: (context, state) {
