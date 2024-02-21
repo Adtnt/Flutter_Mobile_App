@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/common/constants/size_constants.dart';
 import 'package:flutter_project/common/extensions/size_extensions.dart';
+import 'package:flutter_project/common/extensions/string_extensions.dart';
+import 'package:flutter_project/presentation/app_localizations.dart';
 import 'package:flutter_project/presentation/themes/theme_color.dart';
 import 'package:flutter_project/presentation/themes/theme_text.dart';
 
@@ -36,7 +38,7 @@ class TabTitleWidget extends StatelessWidget {
           child: Container(
             margin: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 1.0),
             child: Text(
-              title,
+              title.t(context), //'popular', 'now', 'soon'
               style: isSelected
                   ? Theme.of(context).textTheme.headlineLarge?.copyWith(
                       color: AppColor.royalBlue,
